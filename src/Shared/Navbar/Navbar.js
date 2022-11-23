@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../images/icon.jpg'
 
 const Navbar = () => {
     return (
@@ -23,7 +25,10 @@ const Navbar = () => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-primary text-xl">Comfort Zone</a>
+                <div >
+                    <img className='w-8 h-8' src={logo} alt="logo" />
+                </div>
+                <Link to='/' className="ml-2 text-primary text-2xl font-semibold">Comfort Zone</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -41,9 +46,7 @@ const Navbar = () => {
                     <li><a>Item 3</a></li>
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Get started</a>
-            </div>
+            
         </div>
     );
 };

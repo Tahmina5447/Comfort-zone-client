@@ -1,0 +1,10 @@
+.slide-img::after{
+    content:'';
+    border-radius: 14px;
+    position:absolute;
+    left:0; top:0;
+    width:100%;
+    height:100%;
+    display:inline-block;
+    background: linear-gradient(to left, rgba(2, 27, 42, 0.278) 0%,rgba(2, 31, 46, 0.406) 100%);
+}
