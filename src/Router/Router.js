@@ -4,9 +4,12 @@ import Main from "../Layouts/Main"
 import Blogs from "../Pages/Blogs/Blogs"
 import ErrorPage from "../Pages/ErrorPage/ErrorPage"
 import Home from "../Pages/Home/Home"
-import Products from "../Pages/Products/Products"
+import Beds from "../Pages/Products/Beds"
 import Login from "../Shared/Login/Login"
 import Signup from "../Shared/Signup/Signup"
+import AllUsers from "../Dashboard/AdminDashboard/AllUsers"
+import DashboardLayout from "../Layouts/DashboardLayout"
+import AllBuyers from "../Dashboard/AdminDashboard/AllBuyers"
 
 const router=createBrowserRouter([
     {
@@ -33,13 +36,24 @@ const router=createBrowserRouter([
             {
                 path:'/products/:id',
                 loader:({params})=>fetch(`http://localhost:5000/categories/${params.id}`),
-                element:<Products></Products>
+                element:<Beds></Beds>
             },
             {
                 path:'/addproduct',
                 element:<AddProduct></AddProduct>
-            }
+            },
+        
             
+        ]
+    },
+    {
+        path:'/allUsers',
+        element:<DashboardLayout></DashboardLayout>,
+        children:[
+            {
+                path:'/allUsers/allBuyers',
+                element:<AllBuyers></AllBuyers>
+            }
         ]
     }
 ])

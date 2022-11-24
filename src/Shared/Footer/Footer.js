@@ -5,21 +5,28 @@ const Footer = () => {
     return (
         <div>
             <footer className="footer p-10 bg-secondary  text-white">
-            <div>
-                <img className='h-16 w-16' src={logo} alt="" />
-                <p className='text-2xl'>Comfort Zone</p>
-                <p className=''>Since 2022</p>
-            </div>
+                <div>
+                    <img className='h-16 w-16' src={logo} alt="" />
+                    <p className='text-2xl'>Comfort Zone</p>
+                    <p className=''>Since 2022</p>
+                </div>
 
-            <div className="">
-                <span className="footer-title">Social</span>
-                <a className="link link-hover">Twitter</a>
-                <a className="link link-hover">Instagram</a>
-                <a className="link link-hover">Facebook</a>
-                <a className="link link-hover">Github</a>
-            </div>
+                <div className="">
+                    <span className="footer-title">Social</span>
+                    <a className="link link-hover">Twitter</a>
+                    <a className="link link-hover">Instagram</a>
+                    <a className="link link-hover">Facebook</a>
+                    <a className="link link-hover">Github</a>
+                </div>
+                <div>
+                    <span className="footer-title">Services</span>
+                    <a className="link link-hover">Branding</a>
+                    <a className="link link-hover">Design</a>
+                    <a className="link link-hover">Marketing</a>
+                    <a className="link link-hover">Advertisement</a>
+                </div>
 
-        </footer>
+            </footer>
         </div>
     );
 };

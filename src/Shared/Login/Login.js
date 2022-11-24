@@ -1,14 +1,26 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import googleLogo from '../../images/googleLogo.png'
+
 
 const Login = () => {
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser,loginWithProvider } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const googleProvider = new GoogleAuthProvider();
+    const handlegoogleLogin = () => {
+        loginWithProvider(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
 
+            })
+            .catch(error => console.error(error));
 
+    }
     const handleLogin = (data) => {
         console.log(data)
         loginUser(data.email, data.password)
@@ -66,10 +78,10 @@ const Login = () => {
                         <button className="btn btn-primary">Login</button>
                     </div>
                 </form>
-                {/* <form onSubmit={resetPass}>
-                    <button type='submit'>Forget Password?</button>
-                    <input type="email" name='email' placeholder="Send Your Email" className="input input-bordered" />
-                </form> */}
+                <div className='flex mx-auto'>
+                    <h3 className='font-bold mr-1'>Login With</h3>
+                    <button onClick={handlegoogleLogin}><img className='w-5 h-5' src={googleLogo} alt="" /></button>
+                </div>
                 <p className='text-center'>Create a new account.<Link className='btn btn-link' to='/signup'>Sign Up</Link></p>
 
             </div>
