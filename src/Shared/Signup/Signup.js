@@ -53,7 +53,7 @@ const Signup = () => {
                     </label>
                     <input
                         {...register('email', { required: 'Email is required.' })}
-                        type="text" placeholder="Email" className="input input-bordered" />
+                        type="email" placeholder="Email" className="input input-bordered" />
                         {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                 </div>
                 <div className="form-control">
