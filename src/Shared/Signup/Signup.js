@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Signup = () => {
+    const {createUser,updateUser}=useContext(AuthContext);
     const { register, handleSubmit,formState: { errors } } = useForm();
 
-    const handleSignup=()=>{
-
-    }
+    const handleSignup = (data) =>{
+        // console.log(data)
+        createUser(data.email, data.password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            const userInfo = {
+                displayName: data.name
+                
+            }
+            console.log(userInfo);
+            updateUser(userInfo)
+                .then(() => { 
+                    // saveUser(data.name, data.email);
+                })
+                .catch(err => console.log(err));
+           
+        })
+        .catch(error => {
+            console.log(error)
+            // setErrorMessage(error.message)
+        });
+    };
     return (
         <div className="hero min-h-screen ">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
