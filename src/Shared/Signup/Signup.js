@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
@@ -23,6 +24,7 @@ const Signup = () => {
                     // saveUser(data.name, data.email);
                 })
                 .catch(err => console.log(err));
+                toast.success('Successfully Create a User')
            
         })
         .catch(error => {

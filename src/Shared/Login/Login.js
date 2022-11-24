@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
+    const { loginUser } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 
-    const handleLogin=()=>{
+    const handleLogin = (data) => {
+        console.log(data)
+        loginUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                // setLoginUserEmail(data.email);
+                toast.success('Successfully Login')
+                
+                
+            })
+            .catch(error => {
+                console.log(error.message)
+                // setErrorMessage(error.message)
+            });
 
-    }
+
+    };
     return (
         <div className="hero min-h-screen">
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl ">
