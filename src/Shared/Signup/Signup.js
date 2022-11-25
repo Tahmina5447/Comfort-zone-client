@@ -2,13 +2,16 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import googleLogo from '../../images/googleLogo.png'
 
 const Signup = () => {
     const { createUser, updateUser, loginWithProvider } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const location =useLocation()
+    const navigate=useNavigate();
+    const from=location?.state?.from?.pathname || '/';
     const googleProvider = new GoogleAuthProvider();
 
     const handlegoogleSignup = () => {
@@ -23,7 +26,6 @@ const Signup = () => {
     }
 
     const handleSignup = (data) => {
-        console.log(data)
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -35,7 +37,7 @@ const Signup = () => {
                 console.log(userInfo);
                 updateUser(userInfo)
                     .then(() => {
-                        // saveUser(data.name, data.email);
+                        saveUser(data.name, data.email,data.candidate);
                     })
                     .catch(err => console.log(err));
                 toast.success('Successfully Create a User')
@@ -46,6 +48,25 @@ const Signup = () => {
                 // setErrorMessage(error.message)
             });
     };
+
+
+    const saveUser = (name, email,candidate) =>{
+        const user ={name, email,candidate};
+        // console.log(user)
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            // setCreatedUserEmail(email);
+            navigate(from, {replace: true})
+            console.log(data);
+        })
+    }
     return (
         <div className="hero min-h-screen ">
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
@@ -58,8 +79,10 @@ const Signup = () => {
                                 className="select input input-bordered">
                                 <option  selected>Buyer</option>
                                 <option>Seller</option>
+                                <option>Admin</option>
                                 
                             </select>
+                            {errors.candidate && <p className='text-red-500'>{errors.candidate.message}</p>}
                         </div>
                     <div className="form-control">
                         <label className="label">

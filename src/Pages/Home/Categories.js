@@ -14,9 +14,11 @@ const Categories = () => {
             <div>
                 <h1 className='text-center text-primary text-2xl font-bold'>Categories</h1>
             </div>
-            <div className='mt-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                {categories.map(category=><div>
-                    <Link className='btn' to={`/products/${category._id}`}>{category.categoryName}</Link>
+            <div className='mt-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-1/2 mx-auto mt-4'>
+                {categories.map(category=><div className='' >
+                    
+                    <Link  className='btn' to={`/products/${category._id}`}>{category.categoryName}</Link>
+                    
                 </div>)}
             </div>
             

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import logo from '../../images/icon.jpg'
@@ -16,11 +15,14 @@ const Navbar = () => {
     const menuItems = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blog'>Blogs</Link></li>
-        <li><Link to='/addproduct'>Addproduct</Link></li>
-        <li><Link to='/allUsers'>Dashboard</Link></li>
+        {/* <li><Link to='/addproduct'>Addproduct</Link></li>
+        <li><Link to='/myOrders'>My Orders</Link></li>
+        <li><Link to='/myProducts'>My Products</Link></li> */}
+    {/*  */}
         {
             user?.email ?
             <>
+                <li><Link to='/dashboard'>Dashboard</Link></li>
                 <li onClick={handleLogOut}><Link>Logout</Link></li>
             </>
             :

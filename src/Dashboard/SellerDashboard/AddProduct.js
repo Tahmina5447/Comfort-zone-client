@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { data } from 'autoprefixer';
-import React, { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../Context/AuthProvider';
 
 
 const AddProduct = () => {
+    const {user}=useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     
     const { data: categories = [] } = useQuery({
@@ -23,7 +24,8 @@ const AddProduct = () => {
             originalPrice: data.originalPrice,
             usesYears: data.usesYears,
             todaysDate: data.todaysDate,
-            sellerName: data.sellerName,
+            sellerName: user?.displayName,
+            email:user?.email,
             phone: data.phone,
             description: data.description,
             categories: data.categories,
@@ -41,6 +43,7 @@ const AddProduct = () => {
         .then(res => res.json())
         .then(result => {
                 console.log(result);
+                toast.success('Product added successfully')
                 
         })
     }
@@ -56,67 +59,66 @@ const AddProduct = () => {
                             <input
                                 {...register('productImage', { required: 'Product Image URL is required.' })}
                                 type="text" placeholder="Image URL" className="input input-bordered" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                            {errors.productImage && <p className='text-red-500'>{errors.productImage.message}</p>}
                         </div>
                         <div className="form-control">
                             <input
-                                {...register('productImage', { required: 'Email is required.' })}
-                                type="email" placeholder="Email" className="input input-bordered" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                                {...register('email')}
+                                type="email" disabled defaultValue={user?.email} className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <input
                                 {...register('productName', { required: 'Product Name is required.' })}
                                 type="text" placeholder="Product Name" className="input input-bordered" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                            {errors.productName && <p className='text-red-500'>{errors.productName.message}</p>}
                         </div>
                         <div className="form-control">
                             <input
                                 {...register('location', { required: 'Location is required.' })}
                                 type="text" placeholder="Location" className="input input-bordered" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                            {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
                         </div>
                         <div className="form-control">
                             <input
                                 {...register('resellPrice', { required: 'Sell price is required.' })}
                                 type="text" placeholder="Sell price" className="input input-bordered" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                            {errors.resellPrice && <p className='text-red-500'>{errors.resellPrice.message}</p>}
                         </div>
                         <div className="form-control">
                             <input
                                 {...register('originalPrice', { required: 'Original price is required.' })}
                                 type="text" placeholder="Original price" className="input input-bordered" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                            {errors.originalPrice && <p className='text-red-500'>{errors.originalPrice.message}</p>}
                         </div>
                         <div className="form-control">
                             <input
                                 {...register('usesYears', { required: 'Years of use is required.' })}
                                 type="text" placeholder="Years of use" className="input input-bordered" />
-                            {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                            {errors.usesYears && <p className='text-red-500'>{errors.usesYears.message}</p>}
                         </div>
                         <div className="form-control">
                             <input
                                 {...register('todaysDate', { required: 'Todays date is required.' })}
                                 type="text" placeholder="Todays date" className="input input-bordered" />
-                            {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                            {errors.todaysDate && <p className='text-red-500'>{errors.todaysDate.message}</p>}
                         </div>
                         <div className="form-control">
                             <input
-                                {...register('sellerName', { required: 'Seller Name is required.' })}
-                                type="text" placeholder="Seller Name" className="input input-bordered" />
-                            {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                                {...register('sellerName')}
+                                type="text" disabled defaultValue={user?.displayName} className="input input-bordered" />
+                            
                         </div>
                         <div className="form-control">
                             <input
                                 {...register('phone', { required: 'Mobile Number is required.' })}
                                 type="text" placeholder="Mobile Number" className="input input-bordered" />
-                            {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                            {errors.phone && <p className='text-red-500'>{errors.phone.message}</p>}
                         </div>
                         <div className="form-control">
                             <input
                                 {...register('description', { required: 'Description is required.' })}
                                 type="text" placeholder="Description" className="input input-bordered" />
-                            {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                            {errors.description && <p className='text-red-500'>{errors.description.message}</p>}
                         </div>
                         <div className="form-control">
                             <select
