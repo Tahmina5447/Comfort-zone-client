@@ -5,12 +5,12 @@ import toast from 'react-hot-toast';
 const AllBuyers = () => {
     const {data:allBuyers=[],refetch}=useQuery({
         queryKey:['allBuyers'],
-        queryFn:()=>fetch(`http://localhost:5000/users?candidate=Buyer`)
+        queryFn:()=>fetch(`https://comfort-zone-server.vercel.app/users?candidate=Buyer`)
         .then(res=>res.json())
     })
 
     const handleDelete = id =>{
-        fetch(`http://localhost:5000/user/${id}`, {
+        fetch(`https://comfort-zone-server.vercel.app/user/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

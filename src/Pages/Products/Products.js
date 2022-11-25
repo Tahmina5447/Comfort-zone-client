@@ -16,7 +16,7 @@ const Products = () => {
 
     const {data:products=[],refetch}=useQuery({
         queryKey:['products'],
-        queryFn:()=>fetch(`http://localhost:5000/products?categories=${data.categoryName}`)
+        queryFn:()=>fetch(`https://comfort-zone-server.vercel.app/products?categories=${data.categoryName}`)
         .then(res=>res.json())
         .then(data=>{
             setLoading(false)

@@ -10,7 +10,7 @@ const MyProducts = () => {
     
     const {data:myProducts=[],refetch}=useQuery({
         queryKey:['myProducts'],
-        queryFn:()=>fetch(`http://localhost:5000/myProducts?email=${user?.email}`)
+        queryFn:()=>fetch(`https://comfort-zone-server.vercel.app/myProducts?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
             setLoading(false)
@@ -25,7 +25,7 @@ if(loading){
 }
 
     const handleDelete = id =>{
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://comfort-zone-server.vercel.app/product/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

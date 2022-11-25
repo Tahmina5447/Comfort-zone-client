@@ -1,5 +1,5 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import googleLogo from '../../images/googleLogo.png'
 const Login = () => {
     const { loginUser,loginWithProvider} = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [errorMessage,setErrormessage]=useState('')
     const location =useLocation()
     const navigate=useNavigate();
     const from=location?.state?.from?.pathname || '/';
@@ -38,6 +39,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.log(error.message)
+                setErrormessage(error.message)
             });
 
 
@@ -46,7 +48,7 @@ const Login = () => {
         <div className="hero min-h-screen">
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl ">
                 <h1 className="text-5xl font-bold text-center mt-4">Login now!</h1>
-                {/* <p className='text-bold text-error m-4'>{errorMessage}</p> */}
+                {errorMessage && <p className='text-bold text-error m-4'>{errorMessage}</p>}
                 <form onSubmit={handleSubmit(handleLogin)} className="card-body">
                     <div className="form-control">
                         <label className="label">

@@ -30,7 +30,7 @@ const Modal = ({ refetch, singleProduct }) => {
             productImg
         }
 // console.log(bookingInfo)
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://comfort-zone-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

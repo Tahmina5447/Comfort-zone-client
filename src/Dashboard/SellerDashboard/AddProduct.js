@@ -12,7 +12,7 @@ const AddProduct = () => {
     
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch(`http://localhost:5000/categories`)
+        queryFn: () => fetch(`https://comfort-zone-server.vercel.app/categories`)
             .then(res => res.json())
     })
 
@@ -34,7 +34,7 @@ const AddProduct = () => {
         }
         
         console.log(productInfo)
-        fetch('http://localhost:5000/products', {
+        fetch('https://comfort-zone-server.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

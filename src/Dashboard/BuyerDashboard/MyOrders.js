@@ -9,7 +9,7 @@ const MyOrders = () => {
     const [loading,setLoading]=useState(true)
     const {data:orders=[]}=useQuery({
         queryKey:['orders'],
-        queryFn:()=>fetch(`http://localhost:5000/orders?email=${user?.email}`)
+        queryFn:()=>fetch(`https://comfort-zone-server.vercel.app/orders?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
             setLoading(false)
