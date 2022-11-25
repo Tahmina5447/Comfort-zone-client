@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# Comfort Zone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Live site link:
+[ https://comfort-zone-2f181.web.app/ ]
 
 
 ### `Uses technology`
