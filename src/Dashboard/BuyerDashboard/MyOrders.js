@@ -1,14 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Loader from '../../Component/Loader';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const MyOrders = () => {
     const {user}=useContext(AuthContext)
-    const {data:orders=[],refetch}=useQuery({
+    const [loading,setLoading]=useState(true)
+    const {data:orders=[]}=useQuery({
         queryKey:['orders'],
         queryFn:()=>fetch(`http://localhost:5000/orders?email=${user?.email}`)
         .then(res=>res.json())
+        .then(data=>{
+            setLoading(false)
+            return data;
+            // console.log(data)
+            
+        })
     })
+    if(loading){
+        return <Loader></Loader>
+    }
     console.log(orders)
     return (
         <div className='my-16'>
@@ -21,8 +33,8 @@ const MyOrders = () => {
                     <p className='font-bold text-teal-400 '>Price: <span>{order.price}</span></p>
                     
                     <div className="mt-8">
-                        <button className='btn btn-sm'>Pay</button>
-                       
+                        <button className='btn btn-sm'><Link to='/dashboard/payment'>Pay</Link></button>
+                        
                     </div>
                 </div>
             </div>)

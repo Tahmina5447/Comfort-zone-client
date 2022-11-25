@@ -14,11 +14,8 @@ const Sliderone = ({ data }) => {
                 <a href={`#slide${next}`} className="btn btn-ghost font-bold text-xl bg-white text-primary">❯</a>
             </div>
             <div className='absolute transform -translate-y-1/2 left-1/4 top-1/2 w-1/2'>
-                <h1 className='text-6xl text-white text-center font-bold'>Welcome to Comfort Zone</h1>
-                <p className='text-primary text-bold my-6 text-center text-xl'>Choose your necessary furniture and order fast.</p>
-                <div className='mb-4 text-center'>
-                    <Link className=' text-white py-4 rounded-xl px-6 bg-primary font-bold hover:bg-secondary'>Order Now</Link>
-                </div>
+                <h1 className='text-5xl text-white text-center font-bold'>Welcome to Comfort Zone</h1>
+                
             </div>
         </div>
     );

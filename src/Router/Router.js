@@ -13,6 +13,11 @@ import MyProducts from "../Dashboard/SellerDashboard/MyProducts"
 import Products from "../Pages/Products/Products"
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
 import DashBoard from "../Dashboard/DashBoard"
+import AdminRoute from "../AdminRoute/AdminRoute"
+import SellerRoute from "../SellerRoute/SellerRoute"
+import BuyerRoute from "../BuyerRoute/BuyerRoute"
+import Payment from "../Dashboard/BuyerDashboard/Payment"
+import AllSellers from "../Dashboard/AdminDashboard/AllSellers"
 
 const router=createBrowserRouter([
     {
@@ -37,34 +42,50 @@ const router=createBrowserRouter([
                 element:<Signup></Signup>
             },
             {
-                path:'/products/:id',
+                path:'/categories/:id',
                 loader:({params})=>fetch(`http://localhost:5000/categories/${params.id}`),
                 element:<PrivateRoute><Products></Products></PrivateRoute>
             },
-            {
-                path:'/addproduct',
-                element:<AddProduct></AddProduct>
-            },
-            {
-                path:'/myOrders',
-                element:<MyOrders></MyOrders>
-            },
-            {
-                path:'/myProducts',
-                element:<MyProducts></MyProducts>
-            }
+           
+           
         
             
         ]
     },
     {
         path:'/dashboard',
-        element:<DashboardLayout></DashboardLayout>,
+        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children:[
+            // {
+            //     path:'/dashboard',
+            //     element:<DashBoard></DashBoard>
+            // },
             {
-                path:'/dashboard',
-                element:<DashBoard></DashBoard>
+                path:'/dashboard/myProducts',
+                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
+            },
+            {
+                path:'/dashboard/addproduct',
+                element:<SellerRoute><AddProduct></AddProduct></SellerRoute>
+            },
+            {
+                path:'/dashboard/myOrders',
+                element:<BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+            },
+            {
+                path:'/dashboard/payment',
+                element:<BuyerRoute><Payment></Payment></BuyerRoute>
+            },
+            {
+                path:'/dashboard/allSellers',
+                element:<AdminRoute><AllSellers></AllSellers></AdminRoute>
+            },
+            {
+                path:'/dashboard/allBuyers',
+                element:<AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             }
+            
+
         ]
     }
 ])

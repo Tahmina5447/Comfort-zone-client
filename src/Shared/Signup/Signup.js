@@ -19,7 +19,7 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-
+                navigate(from, {replace: true})
             })
             .catch(error => console.error(error));
 
@@ -41,6 +41,7 @@ const Signup = () => {
                     })
                     .catch(err => console.log(err));
                 toast.success('Successfully Create a User')
+                navigate(from, {replace: true})
 
             })
             .catch(error => {
@@ -79,7 +80,6 @@ const Signup = () => {
                                 className="select input input-bordered">
                                 <option  selected>Buyer</option>
                                 <option>Seller</option>
-                                <option>Admin</option>
                                 
                             </select>
                             {errors.candidate && <p className='text-red-500'>{errors.candidate.message}</p>}

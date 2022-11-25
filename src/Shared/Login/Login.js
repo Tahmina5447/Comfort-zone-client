@@ -8,7 +8,7 @@ import googleLogo from '../../images/googleLogo.png'
 
 
 const Login = () => {
-    const { loginUser,loginWithProvider } = useContext(AuthContext);
+    const { loginUser,loginWithProvider} = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const location =useLocation()
     const navigate=useNavigate();
@@ -20,6 +20,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                navigate(from, {replace: true})
 
             })
             .catch(error => console.error(error));
@@ -31,14 +32,12 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                // setLoginUserEmail(data.email);
                 toast.success('Successfully Login')
                 navigate(from, {replace: true})
                 
             })
             .catch(error => {
                 console.log(error.message)
-                // setErrorMessage(error.message)
             });
 
 

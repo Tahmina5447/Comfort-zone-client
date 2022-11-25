@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 
@@ -43,16 +44,18 @@ const AddProduct = () => {
         .then(res => res.json())
         .then(result => {
                 console.log(result);
-                toast.success('Product added successfully')
+                
+                
                 
         })
+
     }
 
     return (
         <div className="my-16">
             <div className="card w-2/3 mx-auto shadow-2xl ">
                 <h1 className="text-2xl font-bold text-center mt-4">Fill this form and add your product</h1>
-                {/* {errorMessage && <p className='text-bold text-error m-4'>{errorMessage}</p>} */}
+                
                 <form onSubmit={handleSubmit(addProduct)} className="card-body ">
                     <div className='grid grid-cols-2'>
                         <div className="form-control">
@@ -148,7 +151,7 @@ const AddProduct = () => {
                     </div>
 
                     <div className="form-control mt-6 w-3/5 mx-auto">
-                        <button className="btn btn-primary">Add Product</button>
+                        <button  className="btn btn-primary"><Link to='/dashboard/myProducts'>Add Product</Link></button>
                     </div>
                 </form>
 
