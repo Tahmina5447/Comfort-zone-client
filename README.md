@@ -14,7 +14,7 @@ You can login/sign up this site with email and password or google.
 
 
 ### `Admin role`
-Admin will monitor this site, such as seller verification, product management
+Admin will monitor this site, such as seller delete or buyer delete
 
 ### `Seller role`
 Seller can add product and see all products which he added.
