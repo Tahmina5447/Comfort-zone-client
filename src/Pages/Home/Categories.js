@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import bed from '../../images/bed2.jpg'
 
 const Categories = () => {
     const {data:categories=[]}=useQuery({
@@ -14,10 +13,12 @@ const Categories = () => {
             <div>
                 <h1 className='text-center text-primary text-2xl font-bold'>Categories</h1>
             </div>
-            <div className=' grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-1/2 mx-auto mt-4 gap-4'>
+            <div className='w-2/5 mx-auto my-6'>
                 {categories.map(category=><div>
                     
-                    <Link  className='btn' to={`/categories/${category._id}`}>{category.categoryName}</Link>
+                        <div className='border bg-secondary py-3 rounded-xl text-white '><Link  to={`/categories/${category._id}`}><h3 className='text-center' >{category.categoryName}</h3></Link></div>
+                    
+                    
                     
                 </div>)}
             </div>
